@@ -1,6 +1,9 @@
 order_by_reference <- function(unsorted, reference, reference2=NULL){
   if(is.null(dim(unsorted))){
-    result <- sapply(reference, function(x,y){which(y == x)},unsorted)
+    reference<- reference[reference %in% unsorted]
+    result <- sapply(reference, function(x,y){
+                         which(y == x)},
+                     unsorted)
   }else{
     if(is.null(reference2)){
       stop('The unsorted data has several rows or columns, but reference2 is not defined.')
